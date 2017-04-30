@@ -1,0 +1,1356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax22="http://description.axis.apache.org/xsd" xmlns:ax21="http://model.pai.nimio.es/xsd" xmlns:ax23="http://utils.axis.apache.org/xsd" xmlns:ax25="http://util.java/xsd" xmlns:ns="http://ws.pai.nimio.es" targetNamespace="http://ws.pai.nimio.es">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://util.java/xsd">
+            <xs:complexType name="Map">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="empty" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://utils.axis.apache.org/xsd">
+            <xs:complexType name="BeanPropertyDescriptor">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="actualType" nillable="true" type="xs:anyType"/>
+                    <xs:element minOccurs="0" name="array" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="indexed" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="indexedOrArray" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="readable" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="type" nillable="true" type="xs:anyType"/>
+                    <xs:element minOccurs="0" name="writeable" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax24="http://utils.axis.apache.org/xsd" xmlns:ax26="http://util.java/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://description.axis.apache.org/xsd">
+            <xs:import namespace="http://utils.axis.apache.org/xsd"/>
+            <xs:import namespace="http://util.java/xsd"/>
+            <xs:complexType name="TypeDesc">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="anyContentDescriptor" nillable="true" type="ax23:BeanPropertyDescriptor"/>
+                    <xs:element minOccurs="0" name="anyDesc" nillable="true" type="ax23:BeanPropertyDescriptor"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="fields" nillable="true" type="ax22:FieldDesc"/>
+                    <xs:element minOccurs="0" name="propertyDescriptorMap" nillable="true" type="ax25:Map"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="propertyDescriptors" nillable="true" type="ax23:BeanPropertyDescriptor"/>
+                    <xs:element minOccurs="0" name="xmlType" nillable="true" type="xs:anyType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="FieldDesc">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="element" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="fieldName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="indexed" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="javaType" nillable="true" type="xs:anyType"/>
+                    <xs:element minOccurs="0" name="minOccursIs0" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="minOccursZero" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="xmlName" nillable="true" type="xs:anyType"/>
+                    <xs:element minOccurs="0" name="xmlType" nillable="true" type="xs:anyType"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax27="http://description.axis.apache.org/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://model.pai.nimio.es/xsd">
+            <xs:import namespace="http://description.axis.apache.org/xsd"/>
+            <xs:complexType name="Elemento">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codigoAplicacion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="database" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dirBase" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dirBaseInt" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dirBasePre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="elementoDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="etiqueta" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idTipoElemento" type="xs:int"/>
+                    <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="origen" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="path" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pathCVS" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="proiMadre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="projectName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="proyecto" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoScript" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                    <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Agrupacion">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Aplicacion">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="appCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="appDescripcion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ElementoBloqueado">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="path" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                    <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ElementoVersiones">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="path" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                    <xs:element minOccurs="0" name="versionInt" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="versionPre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="versionPro" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EtiquetaFuncional">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idEtiqueta" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Extension">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idTipoElemento" type="xs:int"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TipoElemento">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dirBase" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dirBaseInt" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dirBasePre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="idAgrupacion" type="xs:int"/>
+                    <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="servidor" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="typeDesc" nillable="true" type="ax27:TypeDesc"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax28="http://model.pai.nimio.es/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.pai.nimio.es">
+            <xs:import namespace="http://model.pai.nimio.es/xsd"/>
+            <xs:element name="enviarElementosACola">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true" type="ax28:Elemento"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param5" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="enviarElementosAColaResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="refrescarTipoFicheroResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAgrupacionesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:Agrupacion"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAplicacionesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:Aplicacion"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getElementosBloqueados">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getElementosBloqueadosResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:ElementoBloqueado"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getVersiones">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true" type="ax28:ElementoVersiones"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getVersionesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:ElementoVersiones"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getElementosInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true" type="ax28:Elemento"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getElementosInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:Elemento"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTipoElementoByTipo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true" type="ax28:Elemento"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTipoElementoByTipoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:Elemento"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getEtiquetasFuncionales">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getEtiquetasFuncionalesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:EtiquetaFuncional"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getExtensiones">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getExtensionesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:Extension"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTipoElementosByExt">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTipoElementosByExtResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:TipoElemento"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTipoElementosGrup">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTipoElementosGrupResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:TipoElemento"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="actualizaEstadoKO">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="actualizaEstadoKOResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="actualizaEstadoOK">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="actualizaEstadoOKResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="subirElemento">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="ax28:Elemento"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="subirElementoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="executeServiceCode">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="executeServiceCodeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getEtiquetaPase">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getEtiquetaPaseResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="validarPROI">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="validarPROIResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="certificarCalidadPaquetes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="certificarCalidadPase">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="finalizaPase">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" type="xs:int"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param5" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="finalizaPaseAsincrono">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" type="xs:int"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param5" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param6" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="finalizaPaseCambioTipo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" type="xs:int"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param5" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param6" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="finalizaPaseMultiidioma">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param5" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param6" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param7" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param8" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param9" type="xs:int"/>
+                        <xs:element minOccurs="0" name="param10" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="finalizaPaseNimio">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" type="xs:int"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param5" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="iniciaPaseNimio">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="param3" type="xs:boolean"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="param4" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="validarPROIRequest">
+        <wsdl:part name="parameters" element="ns:validarPROI"/>
+    </wsdl:message>
+    <wsdl:message name="validarPROIResponse">
+        <wsdl:part name="parameters" element="ns:validarPROIResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getElementosBloqueadosRequest">
+        <wsdl:part name="parameters" element="ns:getElementosBloqueados"/>
+    </wsdl:message>
+    <wsdl:message name="getElementosBloqueadosResponse">
+        <wsdl:part name="parameters" element="ns:getElementosBloqueadosResponse"/>
+    </wsdl:message>
+    <wsdl:message name="certificarCalidadPaquetesRequest">
+        <wsdl:part name="parameters" element="ns:certificarCalidadPaquetes"/>
+    </wsdl:message>
+    <wsdl:message name="finalizaPaseRequest">
+        <wsdl:part name="parameters" element="ns:finalizaPase"/>
+    </wsdl:message>
+    <wsdl:message name="getEtiquetaPaseRequest">
+        <wsdl:part name="parameters" element="ns:getEtiquetaPase"/>
+    </wsdl:message>
+    <wsdl:message name="getEtiquetaPaseResponse">
+        <wsdl:part name="parameters" element="ns:getEtiquetaPaseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getAgrupacionesRequest"/>
+    <wsdl:message name="getAgrupacionesResponse">
+        <wsdl:part name="parameters" element="ns:getAgrupacionesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="finalizaPaseNimioRequest">
+        <wsdl:part name="parameters" element="ns:finalizaPaseNimio"/>
+    </wsdl:message>
+    <wsdl:message name="iniciaPaseNimioRequest">
+        <wsdl:part name="parameters" element="ns:iniciaPaseNimio"/>
+    </wsdl:message>
+    <wsdl:message name="subirElementoRequest">
+        <wsdl:part name="parameters" element="ns:subirElemento"/>
+    </wsdl:message>
+    <wsdl:message name="subirElementoResponse">
+        <wsdl:part name="parameters" element="ns:subirElementoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getAplicacionesRequest"/>
+    <wsdl:message name="getAplicacionesResponse">
+        <wsdl:part name="parameters" element="ns:getAplicacionesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="refrescarTipoFicheroRequest"/>
+    <wsdl:message name="refrescarTipoFicheroResponse">
+        <wsdl:part name="parameters" element="ns:refrescarTipoFicheroResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getEtiquetasFuncionalesRequest">
+        <wsdl:part name="parameters" element="ns:getEtiquetasFuncionales"/>
+    </wsdl:message>
+    <wsdl:message name="getEtiquetasFuncionalesResponse">
+        <wsdl:part name="parameters" element="ns:getEtiquetasFuncionalesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="finalizaPaseAsincronoRequest">
+        <wsdl:part name="parameters" element="ns:finalizaPaseAsincrono"/>
+    </wsdl:message>
+    <wsdl:message name="actualizaEstadoOKRequest">
+        <wsdl:part name="parameters" element="ns:actualizaEstadoOK"/>
+    </wsdl:message>
+    <wsdl:message name="actualizaEstadoOKResponse">
+        <wsdl:part name="parameters" element="ns:actualizaEstadoOKResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getElementosInfoRequest">
+        <wsdl:part name="parameters" element="ns:getElementosInfo"/>
+    </wsdl:message>
+    <wsdl:message name="getElementosInfoResponse">
+        <wsdl:part name="parameters" element="ns:getElementosInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="actualizaEstadoKORequest">
+        <wsdl:part name="parameters" element="ns:actualizaEstadoKO"/>
+    </wsdl:message>
+    <wsdl:message name="actualizaEstadoKOResponse">
+        <wsdl:part name="parameters" element="ns:actualizaEstadoKOResponse"/>
+    </wsdl:message>
+    <wsdl:message name="executeServiceCodeRequest">
+        <wsdl:part name="parameters" element="ns:executeServiceCode"/>
+    </wsdl:message>
+    <wsdl:message name="executeServiceCodeResponse">
+        <wsdl:part name="parameters" element="ns:executeServiceCodeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="enviarElementosAColaRequest">
+        <wsdl:part name="parameters" element="ns:enviarElementosACola"/>
+    </wsdl:message>
+    <wsdl:message name="enviarElementosAColaResponse">
+        <wsdl:part name="parameters" element="ns:enviarElementosAColaResponse"/>
+    </wsdl:message>
+    <wsdl:message name="finalizaPaseMultiidiomaRequest">
+        <wsdl:part name="parameters" element="ns:finalizaPaseMultiidioma"/>
+    </wsdl:message>
+    <wsdl:message name="getTipoElementosByExtRequest">
+        <wsdl:part name="parameters" element="ns:getTipoElementosByExt"/>
+    </wsdl:message>
+    <wsdl:message name="getTipoElementosByExtResponse">
+        <wsdl:part name="parameters" element="ns:getTipoElementosByExtResponse"/>
+    </wsdl:message>
+    <wsdl:message name="finalizaPaseCambioTipoRequest">
+        <wsdl:part name="parameters" element="ns:finalizaPaseCambioTipo"/>
+    </wsdl:message>
+    <wsdl:message name="getTipoElementoByTipoRequest">
+        <wsdl:part name="parameters" element="ns:getTipoElementoByTipo"/>
+    </wsdl:message>
+    <wsdl:message name="getTipoElementoByTipoResponse">
+        <wsdl:part name="parameters" element="ns:getTipoElementoByTipoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getExtensionesRequest">
+        <wsdl:part name="parameters" element="ns:getExtensiones"/>
+    </wsdl:message>
+    <wsdl:message name="getExtensionesResponse">
+        <wsdl:part name="parameters" element="ns:getExtensionesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getVersionesRequest">
+        <wsdl:part name="parameters" element="ns:getVersiones"/>
+    </wsdl:message>
+    <wsdl:message name="getVersionesResponse">
+        <wsdl:part name="parameters" element="ns:getVersionesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="certificarCalidadPaseRequest">
+        <wsdl:part name="parameters" element="ns:certificarCalidadPase"/>
+    </wsdl:message>
+    <wsdl:message name="getTipoElementosGrupRequest">
+        <wsdl:part name="parameters" element="ns:getTipoElementosGrup"/>
+    </wsdl:message>
+    <wsdl:message name="getTipoElementosGrupResponse">
+        <wsdl:part name="parameters" element="ns:getTipoElementosGrupResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ServicePAIPortType">
+        <wsdl:operation name="validarPROI">
+            <wsdl:input message="ns:validarPROIRequest" wsaw:Action="urn:validarPROI"/>
+            <wsdl:output message="ns:validarPROIResponse" wsaw:Action="urn:validarPROIResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getElementosBloqueados">
+            <wsdl:input message="ns:getElementosBloqueadosRequest" wsaw:Action="urn:getElementosBloqueados"/>
+            <wsdl:output message="ns:getElementosBloqueadosResponse" wsaw:Action="urn:getElementosBloqueadosResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPaquetes">
+            <wsdl:input message="ns:certificarCalidadPaquetesRequest" wsaw:Action="urn:certificarCalidadPaquetes"/>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPase">
+            <wsdl:input message="ns:finalizaPaseRequest" wsaw:Action="urn:finalizaPase"/>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetaPase">
+            <wsdl:input message="ns:getEtiquetaPaseRequest" wsaw:Action="urn:getEtiquetaPase"/>
+            <wsdl:output message="ns:getEtiquetaPaseResponse" wsaw:Action="urn:getEtiquetaPaseResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAgrupaciones">
+            <wsdl:input message="ns:getAgrupacionesRequest" wsaw:Action="urn:getAgrupaciones"/>
+            <wsdl:output message="ns:getAgrupacionesResponse" wsaw:Action="urn:getAgrupacionesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseNimio">
+            <wsdl:input message="ns:finalizaPaseNimioRequest" wsaw:Action="urn:finalizaPaseNimio"/>
+        </wsdl:operation>
+        <wsdl:operation name="iniciaPaseNimio">
+            <wsdl:input message="ns:iniciaPaseNimioRequest" wsaw:Action="urn:iniciaPaseNimio"/>
+        </wsdl:operation>
+        <wsdl:operation name="subirElemento">
+            <wsdl:input message="ns:subirElementoRequest" wsaw:Action="urn:subirElemento"/>
+            <wsdl:output message="ns:subirElementoResponse" wsaw:Action="urn:subirElementoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAplicaciones">
+            <wsdl:input message="ns:getAplicacionesRequest" wsaw:Action="urn:getAplicaciones"/>
+            <wsdl:output message="ns:getAplicacionesResponse" wsaw:Action="urn:getAplicacionesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="refrescarTipoFichero">
+            <wsdl:input message="ns:refrescarTipoFicheroRequest" wsaw:Action="urn:refrescarTipoFichero"/>
+            <wsdl:output message="ns:refrescarTipoFicheroResponse" wsaw:Action="urn:refrescarTipoFicheroResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetasFuncionales">
+            <wsdl:input message="ns:getEtiquetasFuncionalesRequest" wsaw:Action="urn:getEtiquetasFuncionales"/>
+            <wsdl:output message="ns:getEtiquetasFuncionalesResponse" wsaw:Action="urn:getEtiquetasFuncionalesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseAsincrono">
+            <wsdl:input message="ns:finalizaPaseAsincronoRequest" wsaw:Action="urn:finalizaPaseAsincrono"/>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoOK">
+            <wsdl:input message="ns:actualizaEstadoOKRequest" wsaw:Action="urn:actualizaEstadoOK"/>
+            <wsdl:output message="ns:actualizaEstadoOKResponse" wsaw:Action="urn:actualizaEstadoOKResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getElementosInfo">
+            <wsdl:input message="ns:getElementosInfoRequest" wsaw:Action="urn:getElementosInfo"/>
+            <wsdl:output message="ns:getElementosInfoResponse" wsaw:Action="urn:getElementosInfoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoKO">
+            <wsdl:input message="ns:actualizaEstadoKORequest" wsaw:Action="urn:actualizaEstadoKO"/>
+            <wsdl:output message="ns:actualizaEstadoKOResponse" wsaw:Action="urn:actualizaEstadoKOResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeServiceCode">
+            <wsdl:input message="ns:executeServiceCodeRequest" wsaw:Action="urn:executeServiceCode"/>
+            <wsdl:output message="ns:executeServiceCodeResponse" wsaw:Action="urn:executeServiceCodeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="enviarElementosACola">
+            <wsdl:input message="ns:enviarElementosAColaRequest" wsaw:Action="urn:enviarElementosACola"/>
+            <wsdl:output message="ns:enviarElementosAColaResponse" wsaw:Action="urn:enviarElementosAColaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseMultiidioma">
+            <wsdl:input message="ns:finalizaPaseMultiidiomaRequest" wsaw:Action="urn:finalizaPaseMultiidioma"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosByExt">
+            <wsdl:input message="ns:getTipoElementosByExtRequest" wsaw:Action="urn:getTipoElementosByExt"/>
+            <wsdl:output message="ns:getTipoElementosByExtResponse" wsaw:Action="urn:getTipoElementosByExtResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseCambioTipo">
+            <wsdl:input message="ns:finalizaPaseCambioTipoRequest" wsaw:Action="urn:finalizaPaseCambioTipo"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementoByTipo">
+            <wsdl:input message="ns:getTipoElementoByTipoRequest" wsaw:Action="urn:getTipoElementoByTipo"/>
+            <wsdl:output message="ns:getTipoElementoByTipoResponse" wsaw:Action="urn:getTipoElementoByTipoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getExtensiones">
+            <wsdl:input message="ns:getExtensionesRequest" wsaw:Action="urn:getExtensiones"/>
+            <wsdl:output message="ns:getExtensionesResponse" wsaw:Action="urn:getExtensionesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVersiones">
+            <wsdl:input message="ns:getVersionesRequest" wsaw:Action="urn:getVersiones"/>
+            <wsdl:output message="ns:getVersionesResponse" wsaw:Action="urn:getVersionesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPase">
+            <wsdl:input message="ns:certificarCalidadPaseRequest" wsaw:Action="urn:certificarCalidadPase"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosGrup">
+            <wsdl:input message="ns:getTipoElementosGrupRequest" wsaw:Action="urn:getTipoElementosGrup"/>
+            <wsdl:output message="ns:getTipoElementosGrupResponse" wsaw:Action="urn:getTipoElementosGrupResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ServicePAISoap11Binding" type="ns:ServicePAIPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getElementosBloqueados">
+            <soap:operation soapAction="urn:getElementosBloqueados" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="validarPROI">
+            <soap:operation soapAction="urn:validarPROI" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPaquetes">
+            <soap:operation soapAction="urn:certificarCalidadPaquetes" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPase">
+            <soap:operation soapAction="urn:finalizaPase" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetaPase">
+            <soap:operation soapAction="urn:getEtiquetaPase" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAgrupaciones">
+            <soap:operation soapAction="urn:getAgrupaciones" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="iniciaPaseNimio">
+            <soap:operation soapAction="urn:iniciaPaseNimio" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseNimio">
+            <soap:operation soapAction="urn:finalizaPaseNimio" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="subirElemento">
+            <soap:operation soapAction="urn:subirElemento" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="refrescarTipoFichero">
+            <soap:operation soapAction="urn:refrescarTipoFichero" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAplicaciones">
+            <soap:operation soapAction="urn:getAplicaciones" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetasFuncionales">
+            <soap:operation soapAction="urn:getEtiquetasFuncionales" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseAsincrono">
+            <soap:operation soapAction="urn:finalizaPaseAsincrono" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoOK">
+            <soap:operation soapAction="urn:actualizaEstadoOK" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getElementosInfo">
+            <soap:operation soapAction="urn:getElementosInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoKO">
+            <soap:operation soapAction="urn:actualizaEstadoKO" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeServiceCode">
+            <soap:operation soapAction="urn:executeServiceCode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="enviarElementosACola">
+            <soap:operation soapAction="urn:enviarElementosACola" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseMultiidioma">
+            <soap:operation soapAction="urn:finalizaPaseMultiidioma" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosByExt">
+            <soap:operation soapAction="urn:getTipoElementosByExt" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementoByTipo">
+            <soap:operation soapAction="urn:getTipoElementoByTipo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseCambioTipo">
+            <soap:operation soapAction="urn:finalizaPaseCambioTipo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getExtensiones">
+            <soap:operation soapAction="urn:getExtensiones" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getVersiones">
+            <soap:operation soapAction="urn:getVersiones" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosGrup">
+            <soap:operation soapAction="urn:getTipoElementosGrup" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPase">
+            <soap:operation soapAction="urn:certificarCalidadPase" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ServicePAISoap12Binding" type="ns:ServicePAIPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getElementosBloqueados">
+            <soap12:operation soapAction="urn:getElementosBloqueados" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="validarPROI">
+            <soap12:operation soapAction="urn:validarPROI" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPaquetes">
+            <soap12:operation soapAction="urn:certificarCalidadPaquetes" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPase">
+            <soap12:operation soapAction="urn:finalizaPase" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetaPase">
+            <soap12:operation soapAction="urn:getEtiquetaPase" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAgrupaciones">
+            <soap12:operation soapAction="urn:getAgrupaciones" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="iniciaPaseNimio">
+            <soap12:operation soapAction="urn:iniciaPaseNimio" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseNimio">
+            <soap12:operation soapAction="urn:finalizaPaseNimio" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="subirElemento">
+            <soap12:operation soapAction="urn:subirElemento" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="refrescarTipoFichero">
+            <soap12:operation soapAction="urn:refrescarTipoFichero" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAplicaciones">
+            <soap12:operation soapAction="urn:getAplicaciones" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetasFuncionales">
+            <soap12:operation soapAction="urn:getEtiquetasFuncionales" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseAsincrono">
+            <soap12:operation soapAction="urn:finalizaPaseAsincrono" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoOK">
+            <soap12:operation soapAction="urn:actualizaEstadoOK" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getElementosInfo">
+            <soap12:operation soapAction="urn:getElementosInfo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoKO">
+            <soap12:operation soapAction="urn:actualizaEstadoKO" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeServiceCode">
+            <soap12:operation soapAction="urn:executeServiceCode" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="enviarElementosACola">
+            <soap12:operation soapAction="urn:enviarElementosACola" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseMultiidioma">
+            <soap12:operation soapAction="urn:finalizaPaseMultiidioma" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosByExt">
+            <soap12:operation soapAction="urn:getTipoElementosByExt" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementoByTipo">
+            <soap12:operation soapAction="urn:getTipoElementoByTipo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseCambioTipo">
+            <soap12:operation soapAction="urn:finalizaPaseCambioTipo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getExtensiones">
+            <soap12:operation soapAction="urn:getExtensiones" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getVersiones">
+            <soap12:operation soapAction="urn:getVersiones" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosGrup">
+            <soap12:operation soapAction="urn:getTipoElementosGrup" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPase">
+            <soap12:operation soapAction="urn:certificarCalidadPase" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ServicePAIHttpBinding" type="ns:ServicePAIPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getElementosBloqueados">
+            <http:operation location="ServicePAI/getElementosBloqueados"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getElementosBloqueados"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getElementosBloqueados"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="validarPROI">
+            <http:operation location="ServicePAI/validarPROI"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="validarPROI"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="validarPROI"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPaquetes">
+            <http:operation location="ServicePAI/certificarCalidadPaquetes"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="certificarCalidadPaquetes"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPase">
+            <http:operation location="ServicePAI/finalizaPase"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="finalizaPase"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetaPase">
+            <http:operation location="ServicePAI/getEtiquetaPase"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getEtiquetaPase"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getEtiquetaPase"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAgrupaciones">
+            <http:operation location="ServicePAI/getAgrupaciones"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAgrupaciones"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAgrupaciones"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="iniciaPaseNimio">
+            <http:operation location="ServicePAI/iniciaPaseNimio"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="iniciaPaseNimio"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseNimio">
+            <http:operation location="ServicePAI/finalizaPaseNimio"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="finalizaPaseNimio"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="subirElemento">
+            <http:operation location="ServicePAI/subirElemento"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="subirElemento"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="subirElemento"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="refrescarTipoFichero">
+            <http:operation location="ServicePAI/refrescarTipoFichero"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="refrescarTipoFichero"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="refrescarTipoFichero"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAplicaciones">
+            <http:operation location="ServicePAI/getAplicaciones"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAplicaciones"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAplicaciones"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getEtiquetasFuncionales">
+            <http:operation location="ServicePAI/getEtiquetasFuncionales"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getEtiquetasFuncionales"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getEtiquetasFuncionales"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseAsincrono">
+            <http:operation location="ServicePAI/finalizaPaseAsincrono"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="finalizaPaseAsincrono"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoOK">
+            <http:operation location="ServicePAI/actualizaEstadoOK"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="actualizaEstadoOK"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="actualizaEstadoOK"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getElementosInfo">
+            <http:operation location="ServicePAI/getElementosInfo"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getElementosInfo"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getElementosInfo"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualizaEstadoKO">
+            <http:operation location="ServicePAI/actualizaEstadoKO"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="actualizaEstadoKO"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="actualizaEstadoKO"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeServiceCode">
+            <http:operation location="ServicePAI/executeServiceCode"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="executeServiceCode"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="executeServiceCode"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="enviarElementosACola">
+            <http:operation location="ServicePAI/enviarElementosACola"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="enviarElementosACola"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="enviarElementosACola"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseMultiidioma">
+            <http:operation location="ServicePAI/finalizaPaseMultiidioma"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="finalizaPaseMultiidioma"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosByExt">
+            <http:operation location="ServicePAI/getTipoElementosByExt"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getTipoElementosByExt"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getTipoElementosByExt"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementoByTipo">
+            <http:operation location="ServicePAI/getTipoElementoByTipo"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getTipoElementoByTipo"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getTipoElementoByTipo"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizaPaseCambioTipo">
+            <http:operation location="ServicePAI/finalizaPaseCambioTipo"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="finalizaPaseCambioTipo"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getExtensiones">
+            <http:operation location="ServicePAI/getExtensiones"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getExtensiones"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getExtensiones"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getVersiones">
+            <http:operation location="ServicePAI/getVersiones"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getVersiones"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getVersiones"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTipoElementosGrup">
+            <http:operation location="ServicePAI/getTipoElementosGrup"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getTipoElementosGrup"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getTipoElementosGrup"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="certificarCalidadPase">
+            <http:operation location="ServicePAI/certificarCalidadPase"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="certificarCalidadPase"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ServicePAI">
+        <wsdl:port name="ServicePAIHttpSoap11Endpoint" binding="ns:ServicePAISoap11Binding">
+            <soap:address location="http://localhost:8160/services/ServicePAI.ServicePAIHttpSoap11Endpoint"/>
+        </wsdl:port>
+        <wsdl:port name="ServicePAIHttpSoap12Endpoint" binding="ns:ServicePAISoap12Binding">
+            <soap12:address location="http://localhost:8160/services/ServicePAI.ServicePAIHttpSoap12Endpoint"/>
+        </wsdl:port>
+        <wsdl:port name="ServicePAIHttpEndpoint" binding="ns:ServicePAIHttpBinding">
+            <http:address location="http://localhost:8160/services/ServicePAI.ServicePAIHttpEndpoint"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

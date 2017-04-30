@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragmentos::headerInicial(${titulo='Sitios'})">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet" type="text/css"
+	href="../../../../resources/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../../../resources/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../../../resources/css/nimio.css"></link>
+</head>
+
+<body>
+	<div id="wrapper">
+	<!-- cabecera -->
+	<div th:include="_fragmentos::header"></div>
+	<div id="sidebar-left" class="col-lg-2" th:include="_fragmentos::menu"></div>
+	
+
+	<div class="container col-lg-10">
+		<div class="text-right">
+			<ol class="breadcrumb">
+				<li>Sitios</li>
+				<li>Administraci&oacute;n</li>
+				<li><a href="#" th:href='@{/}'>Home</a></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-10">
+				<p>Lista de sitios registrados</p>
+			</div>
+			<div class="col-xs-2">
+				<div class="btn-group">
+					<button id="dLabel" type="button"
+						class="btn btn-default btn-xs dropdown-toggle"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Definir sitio<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dLabel">
+						<li><a href="#"
+							th:href="@{/admin/ciclovida/sitios/register/servidor}">Servidor
+								(Java)</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table table-striped table-condensed">
+					<thead>
+						<tr>
+							<th class='col-xs-2'>Nombre</th>
+							<th class='col-xs-2'>Tipo</th>
+							<th class='col-xs-1'>Entorno</th>
+							<th class='col-xs-2'>Vinculado</th>
+							<th class='col-xs-5'>Contiene</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="sitio: ${sitios}">
+							<td><a href="#" th:href="@{/admin/ciclovida/sitios/{id}(id=${sitio._1})}" th:text="${sitio._2}">WAS-INT-1</a></td>
+							<td th:text="${sitio._3}">SERVIDOR (WEBSPHERE 8.5)</td>
+							<td th:text="${sitio._4}">INTEGRACION</td>
+							<td><small th:each="vinculado: ${sitio._5}" th:text="${vinculado + ', '}">-</small></td>
+							<td><small th:each="contiene: ${sitio._6}" th:text="${contiene + ', '}">GCS (EAR)</small></td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+
+		</div>
+
+	</div>
+<div id="push" ></div>
+</div>
+	
+ <footer id="footer">
+   <div class="container">
+		<div style="border-top: 1px dotted rgb(225,225,225); color: rgb(225,225,225)">
+			<div class="text-right" style="padding-right:20px;">
+				<span class="small">versi&oacute;n: ${project.version}-${timestamp}</span>
+			</div>
+		</div>
+	</div>
+</footer>
+	<!-- Los scripts siempre al final -->
+	<div th:replace="_fragmentos::pieScript">
+		<!-- Los scripts siempre al final -->
+		<script src="../../../../resources/js/jquery-2.1.4.min.js"
+			th:src="@{/res/js/jquery-2.1.4.min.js}"></script>
+		<script src="../../../../resources/js/bootstrap.min.js"
+			th:src="@{/res/js/bootstrap.min.js}"></script>
+		<script src="../../../../resources/js/bootbox.min.js"
+			th:src="@{/res/js/bootbox.min.js}"></script>
+		<script src="../../../../resources/js/menu.js"
+			th:src="@{/res/js/menu.js}"></script>
+	</div>
+
+</body>
+
+</html>

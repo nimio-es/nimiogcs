@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="nimio-gcs" transaction-type="JTA">
+	
+		<jta-data-source>jdbc/NIMIO_GCS</jta-data-source>
+
+		<!-- el meta registro -->
+		<class>es.nimio.nimiogcs.jpa.entidades.RegistroConIdCalculado</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.MetaRegistro</class>
+
+		<!-- parámetros globales -->
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.ParametroGlobal</class>
+		
+		<!-- relaciones de sistema -->
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.RepositorioCodigo</class>
+
+		<!-- Artefactos -->
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.TipoArtefacto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.Artefacto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.EvolucionArtefacto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.CongelarEvolucionArtefacto</class>
+
+		<!-- Dependencias -->
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.dependencias.Dependencia</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.dependencias.DependenciaPosicional</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.dependencias.DependenciaConAlcance</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.dependencias.DependenciaConModuloWeb</class>
+
+		<!-- Directivas -->
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.TipoDirectiva</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.TipoDirectivaDiccionario</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.TipoDirectivaDiccionarioDefinicion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaBase</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaAlcances</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaCaracterizacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaCoordenadasMaven</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaEstrategiaEvolucion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaEstructuraCodigo</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaInventario</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaProyeccion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaProyeccionMaven</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaPublicacionDeployer</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaParametrosDeployer</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaPublicacionJenkins</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaRamaCodigo</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaReferenciar</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaRepositorioCodigo</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaTaxonomia</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaVersionJava</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.artefactos.directivas.DirectivaDiccionario</class>
+
+		<!-- procesos -->
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.Operacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.ErrorGeneral</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.ProcesoAsincrono</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.ProcesoBatch</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.ProcesoEspera</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.ProcesoEsperaRespuestaDeployer</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.ProcesoEsperaPublicacionDeployer</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.Programada</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.NotificacionExterna</class>
+
+		<!-- relaciones -->
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionArtefacto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionTipoArtefacto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionElementoProyecto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionDestinoPublicacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionSitio</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionPublicacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.operaciones.relaciones.RelacionOperacionPublicacionArtefacto</class>
+
+		<!-- proyectos -->
+		<class>es.nimio.nimiogcs.jpa.entidades.proyectos.ElementoBaseProyecto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.proyectos.Proyecto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.proyectos.EtiquetaProyecto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.proyectos.usos.UsoYProyeccionProyecto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.proyectos.usos.ProyeccionMavenDeProyecto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.proyectos.relaciones.RelacionElementoProyectoArtefacto</class>
+
+		<!-- publicaciones -->
+		<class>es.nimio.nimiogcs.jpa.entidades.publicaciones.Publicacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.publicaciones.PublicacionArtefacto</class>
+
+		<!-- entornos y sitios -->
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.AplicacionEmpresa</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.entornos.DestinoPublicacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.entornos.EntornoConServidores</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.entornos.RepositorioArtefactos</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.entornos.relaciones.RelacionEntornoServidor</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.servidores.Servidor</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.servidores.ServidorJava</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.servidores.relaciones.RelacionServidorArtefacto</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.servidores.relaciones.RelacionServidorAplicacion</class>
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.servidores.relaciones.RelacionServidorLibreriaCompartida</class>
+
+		<!-- usuarios -->
+		<class>es.nimio.nimiogcs.jpa.entidades.sistema.usuarios.Usuario</class>
+
+		<!-- kpis -->
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<property name="eclipselink.weaving" value="false"/>
+		</properties>
+		
+	</persistence-unit>
+</persistence>

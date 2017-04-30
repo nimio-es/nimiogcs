@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Padre -->
+	<parent>
+		<groupId>es.nimio.nimiogcs</groupId>
+		<artifactId>nimiogcs</artifactId>
+		<version>ALFA</version>
+	</parent>
+
+	<!-- Datos del artefacto -->
+	<artifactId>nimiogcs-proxy-deployer</artifactId>
+	<packaging>jar</packaging>
+
+	<!-- Propiedades -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- propiedades de las directivas del artefacto -->
+		<java.version.destino>1.6</java.version.destino>
+		<java.version.compila>1.6</java.version.compila>
+	</properties>
+
+	<dependencies>
+
+		<!-- dependencias -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>nimiogcs-proxy-deployer</finalName>
+
+		<plugins>
+			<!-- plugins para tipo -->
+            <!-- compilacion -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java.version.compila}</source>
+					<target>${java.version.destino}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<meta charset="utf-8"></meta>
+</head>
+
+<body>
+
+	<!-- ================================================================== -->
+	<!-- El formulario para presentar los parámetros del canal y los ar-  . -->
+	<!-- tefactos que son publicables por el mismo.                       . -->
+	<!-- ================================================================== -->
+	
+	<div th:fragment="sel-multiple-artefactos()">
+	
+		<div class="col-xs-12">
+	
+			<!-- los parámetros del canal -->
+			<th:block if="*{parametrosCanal.size()>0}">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">Par&aacute;metros del canal</p>
+					</div>
+					<div class="panel-body">
+
+						<div th:each="entry : *{parametrosCanal}">
+
+							<div class="row">
+								<label th:for="${entry.key}" class="col-sm-3 col-xs-4 control-label"><span th:text="${entry.key}">Nombre</span>:</label>
+								<div class="col-sm-8 col-xs-8"> 
+		                			<input th:id="${entry.key}" th:field="*{parametrosCanal[__${entry.key}__]}" th:value="${entry.value}" class="form-control" type="text" /> 
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</th:block>
+		
+			<!-- los artefactos publicables -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">Artefactos publicables por el canal elegido</p>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-condensed">
+							<thead>
+								<tr>
+									<th class='col-xs-2'>Seleccionado</th>
+									<th class='col-xs-6'>Artefacto</th>
+									<th class='col-xs-4'>Tipo</th>
+								</tr>
+							</thead>		
+							<tbody>
+								<tr th:each='elegible, stat: *{artefactos}'>
+									<td class='col-xs-2'>
+										<input type='checkbox' th:field='*{artefactos[__${stat.index}__].elegido}' />
+										<input type='hidden' th:field='*{artefactos[__${stat.index}__].idArtefacto}' />
+										<input type='hidden' th:field='*{artefactos[__${stat.index}__].nombreArtefacto}' />
+										<input type='hidden' th:field='*{artefactos[__${stat.index}__].tipoArtefacto}' />
+									</td>
+									<td class='col-xs-6'>
+										<span th:text='${elegible.nombreArtefacto}'>XXXXX</span></td>
+									<td class='col-xs-4' th:text='${elegible.tipoArtefacto}'>Liber&iacute;a (Java)</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
+			</div>
+		
+		</div>
+	</div>
+	
+</body>
+
+</html>

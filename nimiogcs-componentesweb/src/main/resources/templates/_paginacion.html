@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<meta charset="utf-8"></meta>
+</head>
+
+<body>
+
+	<!-- ================================================================== -->
+	<!-- Cabecera                                                         . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="indexador_paginacion(indexador)">
+		<div class="col-xs-12 text-right">
+			<ul class="pagination" style="margin: 0px">
+				<th:block th:each="d: ${indexador.elementosIndice()}">
+					<th:block th:if="${d.esElipsis()}">
+						<li class="small disabled"><a href="#">&#8230;</a></li>
+					</th:block>
+					<th:block th:unless="${d.esElipsis()}">
+						<li class="small" th:classappend="${d.electo() ? 'active' : ''}">
+							<a href="#" th:text="${d.texto()}" th:href="@{/{u}(u=${d.urlBase()})} + ${d.parametros()}">1</a>
+						</li>
+					</th:block>
+				</th:block>
+			</ul>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Pie                                                              . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="paginador(paginador)">
+		<div class="col-xs-12">
+			<th:block th:include="_componentes :: lista-componentes(${paginador.componentes()},true)"></th:block>
+		</div>
+	</div>
+	
+
+	<!-- ================================================================== -->
+	<!-- Cuerpo de la paginación                                          . -->
+	<!-- ================================================================== -->
+
+</body>
+
+</html>

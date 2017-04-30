@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  db:
+    build: ./nimiogcs-core
+    environment:
+      - ORACLE_ALLOW_REMOTE=true
+
+  app: 
+    build: ./nimiogcs-ear 
+    ports:
+      - "80:9080"
+    depends_on:
+      - db

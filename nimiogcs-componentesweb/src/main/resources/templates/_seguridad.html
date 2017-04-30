@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<meta charset="utf-8"></meta>
+</head>
+
+<body>
+
+	<!-- ================================================================== -->
+	<!-- Columnas                                                         . -->
+	<!-- ================================================================== -->
+
+	<th:block th:fragment="seguridad-url(bloque)">
+		<th:block sec:authorize-url="" th:attr="sec:authorize-url=${bloque.authorizeUrl()}" th:with="grupo=${T(es.nimio.nimiogcs.web.FragmentosUtils).grupo(bloque.getComponente())}">
+			<th:block th:include="${grupo} :: ${T(es.nimio.nimiogcs.web.FragmentosUtils).fragmento(bloque.getComponente())}(${bloque.getComponente()})"></th:block>
+		</th:block>
+	</th:block>
+
+</body>
+
+</html>

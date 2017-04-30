@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="_fragmentos::headerInicial(${titulo='Alta de nuevo servidor'})">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../resources/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../resources/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../resources/css/nimio.css"></link>
+</head>
+
+<body>
+	<!-- cabecera -->
+	<div th:include="_fragmentos::header"></div>
+
+	<div class="text-right">
+		<ol class="breadcrumb">
+			<li style='font-weight: bold'>Registrar</li>
+			<li>Servidor</li>
+			<li><a href="#" th:href='@{/admin/ciclovida/sitios}'>Sitios</a></li>
+			<li>Administraci&oacute;n</li>
+			<li><a href="#" th:href='@{/}'>Home</a></li>
+		</ol>
+	</div>
+
+	<div class="container">
+
+		<div class="form">
+
+			<h1>Registrar servidor</h1>
+
+			<div class="row">
+				<form id="form_datos" class="form-horizontal" role="form"
+					th:method='post' th:object="${servidor}"
+					th:action="@{/admin/ciclovida/sitios/register/servidor}">
+
+					<fieldset>
+
+						<div class="row" th:if="${#fields.hasErrors('*')}">
+							<div class="col-xs-offset-1 col-xs-10 ">
+								<div class="alert alert-danger fade in">
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span> <a href="#" class="close"
+										data-dismiss="alert">&times;</a> <strong>Hay datos no
+										v&aacute;lidos.</strong>
+									<ul>
+										<li th:each="error: ${#fields.errors('*')}" th:text='${error}'>Error</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<input type="hidden" th:field='*{id}' />
+
+							<div class='form-group'
+								th:classappend="${#fields.hasErrors('nombre')}? 'has-error'">
+								<label for="input-nombre" class="col-xs-3 control-label">Nombre:</label>
+								<div class="col-xs-9">
+									<div class="row">
+										<div class="col-xs-5">
+											<input id="input-nombre" class="form-control" type="text"
+												placeholder="Nombre del servidor." th:field="*{nombre}" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-12">
+											<p class="help-block">Nombre con el que se quiere
+												identificar el servidor.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row"
+							th:classappend="${#fields.hasErrors('tipoServidor')}? 'has-error'">
+							<div class="form-group">
+								<label for="input-tipo-servidor" class="col-xs-3 control-label">Tipo
+									de servidor:</label>
+								<div class="col-xs-9">
+									<div class="row">
+										<div class="col-xs-5 selectContainet">
+											<select id="input-tipo-servidor" class='form-control'
+												th:field='*{tipoServidor}'>
+												<option
+													th:each="ts: ${T(es.nimio.nimiogcs.jpa.enumerados.EnumTipoServidorJava).ALL}"
+													th:value="${ts}" th:text='${ts.getDescripcion()}'>Tomcat</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-12">
+											<span class="help-block">Servidor que hay
+												detr&aacute;s prestando el servicio.</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group">
+								<div class="col-sm-11 text-right">
+									<button type="submit" class='btn btn-primary'>Registrar</button>
+									<a id="cancelar_operacion" class='btn btn-default' href="#"
+										th:href='@{/admin/ciclovida/sitios}'>Cancelar</a>
+								</div>
+							</div>
+						</div>
+
+					</fieldset>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Los scripts siempre al final -->
+	<div th:include="_fragmentos::pieScript"></div>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:fragment= "headerInicial(titulo)">
+<title th:text='${titulo}'>Magnificus</title>
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css" th:href="@{/res/css/bootstrap.min.css}"></link>
+<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap-theme.min.css" th:href="@{/res/css/bootstrap-theme.min.css}"></link>
+<link rel="stylesheet" type="text/css" href="../resources/css/nimio.css" th:href='@{/res/css/nimio.css}'></link>
+</head>
+
+<body>
+
+
+	<!-- ================================================================== -->
+	<!-- Cabecera.                                                        . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="header">
+
+		<nav class="navbar navbar-default" role="navigation">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">NIMIO GCS (Gesti&oacute;n
+					Configuraci&oacute;n Software)</a>
+			</div>
+
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+
+				<!--  cuando la sesión no está iniciada -->
+				<ul class="nav navbar-nav navbar-right"
+					sec:authorize="not isAuthenticated()">
+					<li><a th:href='@{/login}'>Iniciar sesi&oacute;n</a></li>
+				</ul>
+
+				<!--  cuando está la sesión iniciada -->
+				<ul class="nav navbar-nav navbar-right"
+					sec:authorize="isAuthenticated()">
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Conectado como: <span sec:authentication='principal.fullname'>Usuario</span> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" th:href="@{/logout}">Salir</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div th:fragment="menu">
+		<div class="nav-collapse sidebar-nav">
+			<ul class="nav nav-pills nav-stacked left-menu"  id="stacked-menu">
+				<li><a href="#" th:href='@{/proyectos}'><i class="glyphicon glyphicon-blackboard"></i><span class="hidden-tablet"> Proyectos</span></a></li>	
+				<li><a href="#" th:href='@{/artefactos}'><i class="glyphicon glyphicon-briefcase"></i><span class="hidden-tablet"> Componentes</span></a></li>
+				<li sec:authorize-url='/admin/globales' >
+					<a class="collapse in" data-target="#item1" data-toggle="collapse" data-parent="#stacked-menu" href="#"><i class="glyphicon glyphicon-cog"></i><span class="hidden-tablet"> Admin</span></a>
+					
+					<ul class="nav nav-pills nav-stacked collapse in col-lg-offset-1"  id="item1">
+						<li sec:authorize-url='/admin/globales'><a  href="#" th:href='@{/admin/globales}' sec:authorize-url='/admin/globales'><span class="hidden-tablet"> Globales</span></a></li>							
+						<li sec:authorize-url='/admin/tipos'><a  href="#" th:href='@{/admin/tipos}' sec:authorize-url='/admin/tipos'><span class="hidden-tablet"> Tipos de artefactos</span></a></li>							
+						<li sec:authorize-url='/admin/directivas/diccionarios'><a href="#" th:href='@{/admin/directivas/diccionarios}' sec:authorize-url='/admin/directivas/diccionarios'><span class="hidden-tablet"> Diccionario de directivas</span></a></li>							
+						<li sec:authorize-url='/admin/repositorio'><a href='#' th:href='@{/admin/repositorio}'><span class="hidden-tablet"> Repositorios de c&oacute;digo</span></a></li>
+						<li sec:authorize-url='/admin/ciclovida/entornos'><a href='#' th:href='@{/admin/ciclovida/entornos}'><span class="hidden-tablet"> Entornos</span></a></li>
+						<li sec:authorize-url='/admin/ciclovida/sitios'><a href='#' th:href='@{/admin/ciclovida/sitios}'><span class="hidden-tablet"> Sitios</span></a></li>
+						<li sec:authorize-url='/admin/chequeo'><a href='#' th:href='@{/admin/chequeo}'><span class="hidden-tablet"> Chequeo conexiones</span></a></li>
+					</ul>	
+				</li>
+				<li sec:authorize-url='/operaciones'><a class="submenu" href="#" th:href='@{/operaciones}' sec:authorize-url='/operaciones'><i class="glyphicon glyphicon-file"></i><span class="hidden-tablet"> Operaciones</span></a></li>							
+			</ul>
+		</div>
+	</div>
+						
+<div th:fragment="pieScript">
+	<!-- Los scripts siempre al final -->
+	<script src="../resources/js/jquery-2.1.4.min.js"
+		th:src="@{/res/js/jquery-2.1.4.min.js}"></script>
+	<script src="../resources/js/bootstrap.min.js"
+		th:src="@{/res/js/bootstrap.min.js}"></script>
+	<script src="../../resources/js/bootbox.min.js" 
+		th:src="@{/res/js/bootbox.min.js}"></script>
+	<script src="../resources/js/gcs.js"
+		th:src="@{/res/js/gcs.js}"></script>
+</div>
+
+<div th:fragment="bootstrapScript">	
+<!-- http://www.prepbootstrap.com/bootstrap-template/collapsepanels -->
+<script type="text/javascript">
+	    jQuery(function ($) {
+	        $('.panel-heading span.clickable').on("click", function (e) {
+	            if ($(this).hasClass('panel-collapsed')) {
+	                // expand the panel
+	                $(this).parent('.panel').find('.panel-body').slideDown();
+	                $(this).removeClass('panel-collapsed');
+	                $(this).find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+	            }
+	            else {
+	                // collapse the panel
+	                $(this).parent('.panel').find('.panel-body').slideUp();
+	                $(this).addClass('panel-collapsed');
+	                $(this).find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+	            }
+	        });
+	    });
+	</script>
+</div>	
+
+</body>
+
+</html>

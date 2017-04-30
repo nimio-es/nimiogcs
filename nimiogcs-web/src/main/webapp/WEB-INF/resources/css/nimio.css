@@ -1,0 +1,79 @@
+ html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+.negrita {
+	font-weight: bold
+}
+
+.fondoGris {
+	background-color: rgb(249,249,249);
+	border-bottom: 1px solid rgb(225,225,225);
+}
+
+.form {
+	margin: 20px;	
+}
+
+.form>h1,h2,h3,h4 {
+	margin: 30px;
+	padding: 0 200px 15px 0;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+body>#content {
+	margin-top: 15px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.titulo {
+	margin-top:5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #E5E5E5; 
+	background-color: rgb(239, 239, 239);
+}
+
+span.underlined {
+	text-decoration: underline;
+}
+
+.marginBottom-0 {margin-bottom:0;}
+
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#555;}
+.dropdown-submenu.pull-left{float:none;}
+.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+
+
+.tachado{text-decoration:line-through; color:gray;}
+
+body.violaciondeseguridad {
+	background-image:  url(../images/dondevas.jpg);
+	background-size:   cover;
+	background-repeat: no-repeat;
+}
+
+body.noencontrado {
+	background-color:  rgb(2,6,7);
+	background-image:  url(../images/noencontrado.jpg);
+	background-size:   cover;
+	background-repeat: no-repeat;
+}
+
+body.nomastrabajo {
+	background-image:  url(../images/nomastrabajo.jpg);
+	background-size:   cover;
+	background-repeat: no-repeat;
+}
+
+body.inespecifico {
+	background-color:  rgb(212,205,213);
+	background-image:  url(../images/errorinespecifico.jpg);
+	background-size:   cover;
+	background-repeat: no-repeat;
+}

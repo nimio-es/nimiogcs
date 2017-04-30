@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ============================================================== -->
+	<!-- Este archivo pom.xml ha sido autoconstruido como parte del -->
+	<!-- proceso de configuracion del proyecto. Cualquier modificacion -->
+	<!-- realizada manualmente sera ignorada en posteriores recons- -->
+	<!-- trucciones que realicen las herramientas de ciclo de vida. -->
+	<!-- ============================================================== -->
+
+	<!-- Padre -->
+	<parent>
+		<groupId>es.nimio.nimiogcs</groupId>
+		<artifactId>nimiogcs</artifactId>
+		<version>ALFA</version>
+	</parent>
+
+	<!-- Datos del artefacto -->
+	<artifactId>nimiogcs-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<!-- Propiedades -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- propiedades de las directivas del artefacto -->
+		<sonar.skip>true</sonar.skip>
+	</properties>
+
+	<dependencies>
+
+	  <!-- oracle driver -->
+		<dependency>
+    	<groupId>oracle</groupId>
+    	<artifactId>ojdbc6</artifactId>
+    	<version>11.2.0.3</version>
+		</dependency>
+
+		<!-- dependencias -->
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-web</artifactId>
+			<type>war</type>
+			<version>ALFA</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>nimiogcs-ear</finalName>
+
+		<plugins>
+			<!-- plugins para tipo -->
+            <!-- web modules -->
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<displayName>nimiogcs-ear</displayName>
+					<defaultJavaBundleDir>lib</defaultJavaBundleDir>
+					<version>6</version>
+					<modules>
+						<webModule>
+							<groupId>es.nimio.nimiogcs</groupId>
+							<artifactId>nimiogcs-web</artifactId>
+							<bundleFileName>nimiogcs-web.war</bundleFileName>
+							<contextRoot>/</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+</project>

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Padre -->
+	<parent>
+		<groupId>es.nimio.nimiogcs</groupId>
+		<artifactId>nimiogcs</artifactId>
+		<version>ALFA</version>
+	</parent>
+
+	<!-- Datos del artefacto -->
+	<artifactId>nimiogcs-web</artifactId>
+	<packaging>war</packaging>
+
+	<!-- Propiedades -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- propiedades de las directivas del artefacto -->
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<java.version.destino>1.6</java.version.destino>
+		<java.version.compila>1.6</java.version.compila>
+
+	</properties>
+
+	<dependencies>
+		<!-- dependencias -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<type>jar</type>
+			<version>1.7</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<type>jar</type>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<type>jar</type>
+			<version>1.1.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>transaction-api</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.6.4</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.2.1.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>4.2.1.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.2.1.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.9.0.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring4</artifactId>
+			<version>2.1.4.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<version>2.1.2.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-functional</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-core</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-repositorios</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-proxy-deployer</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-componentesweb</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-pubdeployer</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-pubartifactory</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>es.nimio.nimiogcs</groupId>
+			<artifactId>nimiogcs-sonaretq</artifactId>
+			<type>jar</type>
+			<version>ALFA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-api</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-util</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-impl</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-connector-basic</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-transport-file</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-transport-http</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-transport-wagon</artifactId>
+			<type>jar</type>
+			<version>1.0.2.v20150114</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-aether-provider</artifactId>
+			<type>jar</type>
+			<version>3.1.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.wagon</groupId>
+			<artifactId>wagon-http-lightweight</artifactId>
+			<type>jar</type>
+			<version>2.9</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.wagon</groupId>
+			<artifactId>wagon-ssh</artifactId>
+			<type>jar</type>
+			<version>2.9</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<type>jar</type>
+			<version>1.8.7</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<type>jar</type>
+			<version>1.8.7</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<type>jar</type>
+			<version>2.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<type>jar</type>
+			<version>10.11.1.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.rjeschke</groupId>
+			<artifactId>txtmark</artifactId>
+			<type>jar</type>
+			<version>0.13</version>
+			<scope>compile</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>nimiogcs-web</finalName>
+
+		<plugins>
+			<!-- plugins para tipo -->
+			<!-- compilacion -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java.version.compila}</source>
+					<target>${java.version.destino}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<!-- carpetas para tipo -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+</project>

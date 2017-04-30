@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="_fragmentos::headerInicial(${titulo='Inicio de sesi&oacute;n'})"></head>
+
+<body onload='document.f.username.focus();'>
+
+	<!-- cabecera -->
+	<div th:include="_fragmentos::header"></div>
+
+	<div class="form">
+
+		<h1>Inicio de sesi&oacute;n</h1>
+
+		<form name='f' class="form-horizontal" role="form" th:action='@{/login}' method='POST' >
+			
+			<fieldset>
+			
+				<div  th:if="${param.error}" class="col-sm-offset-1 col-sm-10 alert alert-danger fade in">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<a href="#" class="close" data-dismiss="alert">&times;</a>
+					<strong>Usuario y contrase&ntilde;a inv&aacute;lidos.</strong>
+				</div>
+			
+				<div class="form-group">
+					<label for="input-username" class="col-sm-3 control-label">Usuario</label>
+					<div class="col-sm-8"> 
+						<input id="input-username" name='username' class="form-control" type="text" placeholder="Introzuca el usuario, p.e. nimio" value='' />
+					</div>
+				</div>
+
+				<input id="input-password" name="password" value="" type="hidden" />
+			
+				<div class="form-group">
+					<div class="col-sm-11 text-right">
+						<input name='submit' type="submit" class="btn btn-primary" value="Iniciar sesi&oacute;n" />
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+
+	</div>
+
+	<!-- Los scripts siempre al final -->
+<div th:include="_fragmentos::pieScript"></div>
+
+</body>
+
+</html>

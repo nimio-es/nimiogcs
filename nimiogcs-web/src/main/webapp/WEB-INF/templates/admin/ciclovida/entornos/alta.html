@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="_fragmentos::headerInicial(${titulo='Alta de nuevo entorno'})">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet" type="text/css"
+	href="../../../../resources/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../../../resources/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../../../resources/css/nimio.css"></link>
+</head>
+
+<body>
+<div id="wrapper" >
+	<!-- cabecera -->
+	<div th:include="_fragmentos::header"></div>
+
+	<div id="sidebar-left" class="col-lg-2" th:include="_fragmentos::menu"></div>
+	
+
+	<div class="form col-lg-10">
+
+		<div class="text-right">
+			<ol class="breadcrumb">
+				<li style='font-weight: bold'>Registrar</li>
+				<li><a href="#" th:href='@{/admin/ciclovida/entornos}'>Entornos</a></li>
+				<li>Administraci&oacute;n</li>
+				<li><a href="#" th:href='@{/}'>Home</a></li>
+			</ol>
+		</div>
+		<h1>Registrar entorno</h1>
+		
+		<form id="form_datos" class="form-horizontal" role="form"
+			th:method='post' th:object="${entorno}"
+			th:action="@{/admin/ciclovida/entornos/register}">
+
+			<fieldset>
+
+				<div class="col-sm-offset-1 col-sm-10 alert alert-danger fade in"
+					th:if="${#fields.hasErrors('*')}">
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <a href="#" class="close"
+						data-dismiss="alert">&times;</a> <strong>Hay datos no
+						v&aacute;lidos.</strong>
+						<ul>
+						<li th:each="error: ${#fields.errors('*')}" th:text='${error}'>Error</li>
+						</ul>
+				</div>
+
+				<input type="hidden" th:field='*{id}' />
+
+				<div class='form-group'
+					th:classappend="${#fields.hasErrors('nombre')}? 'has-error'">
+					<label for="input-nombre" class="col-xs-3 control-label">Nombre:</label>
+					<div class="col-xs-8">
+						<input id="input-nombre" class="form-control" type="text"
+							placeholder="Nombre o identificador con el que se identificar&aacute; el entorno."
+							th:field="*{nombre}" />
+							<span class="help-block">Nombre con el que se quiere identificar el entorno.</span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-11 text-right">
+						<button type="submit" class='btn btn-primary'>Registrar</button>
+						<a id="cancelar_operacion" class='btn btn-default' href="#"
+							th:href='@{/admin/ciclovida/entornos}'>Cancelar</a>
+					</div>
+				</div>
+
+			</fieldset>
+
+		</form>
+	</div>
+<div id="push" ></div>
+</div>
+	
+ <footer id="footer">
+   <div class="container">
+		<div style="border-top: 1px dotted rgb(225,225,225); color: rgb(225,225,225)">
+			<div class="text-right" style="padding-right:20px;">
+				<span class="small">versi&oacute;n: ${project.version}-${timestamp}</span>
+			</div>
+		</div>
+	</div>
+</footer>
+	<!-- Los scripts siempre al final -->
+	<div th:include="_fragmentos::pieScript"></div>
+
+
+</body>
+
+</html>

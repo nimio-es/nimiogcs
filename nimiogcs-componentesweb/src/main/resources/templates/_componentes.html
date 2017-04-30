@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<meta charset="utf-8"></meta>
+</head>
+
+<body>
+
+	<!-- ================================================================== -->
+	<!-- Procesa una lista de componentes para lanzar el bloque que le    . -->
+	<!-- corresponde.                                                     . -->
+	<!-- ================================================================== -->
+	<div th:fragment="lista-componentes(lista, rowing)">
+		<th:block th:if="${rowing}">
+			<th:block th:each="componente:${lista}">
+				<div class="row">
+					<th:block th:with="grupo=${T(es.nimio.nimiogcs.web.FragmentosUtils).grupo(componente)}">
+						<th:block th:include="${grupo} :: ${T(es.nimio.nimiogcs.web.FragmentosUtils).fragmento(componente)}(${componente})"></th:block>
+					</th:block>
+				</div>
+			</th:block>
+		</th:block>
+
+		<th:block th:unless="${rowing}">
+			<th:block th:each="componente:${lista}">
+				<th:block th:with="grupo=${T(es.nimio.nimiogcs.web.FragmentosUtils).grupo(componente)}">
+					<th:block th:include="${grupo} :: ${T(es.nimio.nimiogcs.web.FragmentosUtils).fragmento(componente)}(${componente})"></th:block>
+				</th:block>
+			</th:block>
+		</th:block>
+	</div>
+	
+	<!-- ================================================================== -->
+	<!-- Cuando no se conoce qué hacer                                    . -->
+	<!-- ================================================================== -->
+	
+	<div th:fragment="desconocido(pepito)">
+		<p class="text-danger">Pues no sabemos qu&eacute; hacer con esto.</p>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Continente vacío                                                 . -->
+	<!-- ================================================================== -->
+	
+	<div th:fragment="continente-vacio(fragmento)">
+		<div th:id="${fragmento.getId()}" th:class="${fragmento.clasesParaHtml()}">
+			<th:block th:include="_componentes :: lista-componentes(${fragmento.componentes()}, false)"></th:block>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Salto de línea                                                   . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="salto-de-linea(fragmento)">
+		<br />
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Espacios en blanco                                               . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="espacios(fragmento)">
+		<span th:class="${fragmento.clasesParaHtml()}" th:text="${fragmento.texto()}">&nbsp;</span>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Texto simple                                                     . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="texto-simple(fragmento)">
+		<span th:class="${fragmento.clasesParaHtml()}" th:text="${fragmento.texto()}">Lore ipsum</span>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Cabecera H1                                                      . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="texto-cabecera-1(fragmento)">
+		<div class="col-xs-12">
+			<h1 th:class="${fragmento.clasesParaHtml()}" th:text="${fragmento.texto()}">Lore ipsum</h1>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Enlace simple                                                    . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="enlace-simple(fragmento)">
+		<!-- enlace simple -->
+		<a href="#" th:class="${fragmento.clasesParaHtml()}" th:text="${fragmento.texto()}" th:href="@{{u}(u=${fragmento.url()})} + ${fragmento.parametros()}">
+		Lore ipsum
+		</a>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Enlace externo                                                    . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="enlace-externo(enlace)">
+		<!-- enlace externo -->
+		<a href="#" th:class="${enlace.clasesParaHtml()}" th:text="${enlace.texto()}" th:href="${enlace.url()}">
+		Lore ipsum
+		</a>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Glifo                                                            . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="glyphicon(fragmento)">
+		<span th:class="${fragmento.clasesParaHtml()}"></span>
+	</div>
+
+
+	<!-- ================================================================== -->
+	<!-- Párrafo                                                          . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="parrafo(datosParrafo)">
+		<div class="col-xs-12">
+			<p th:class="${datosParrafo.clasesParaHtml()}" th:text="${datosParrafo.texto()}">Lore ipsum</p>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Área PRE                                                         . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="area-pre(datosParrafo)">
+		<div class="col-xs-12">
+			<pre th:class="${datosParrafo.clasesParaHtml()}" th:text="${datosParrafo.texto()}">Lore ipsum</pre>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Localizador o broadcrumb                                         . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="breadcrumb(lista)">
+
+		<div class="text-right">
+			<ol class="breadcrumb">
+			
+				<th:block th:each="item: ${lista.items()}">
+					<th:block th:if="${item.soloTexto()}">
+						<li th:text="${item.texto()}">ITEM</li>
+					</th:block>
+					<th:block th:unless="${item.soloTexto()}">
+						<li>
+							<a th:unless="${item.tieneParametros()}" href="#" th:href="@{{u}(u=${item.url()})}" th:text="${item.texto()}">ITEM</a>
+							<a th:if="${item.tieneParametros()}" href="#" th:href="@{{u}(u=${item.url()})} + ${item.parametros()}" th:text="${item.texto()}">ITEM</a>
+						</li>
+					</th:block>
+				</th:block>
+				
+			</ol>
+		</div>
+
+	</div>		
+
+	<!-- ================================================================== -->
+	<!-- Tabs o pestañas                                                  . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="tabs(tabinfo)">
+	
+		<div class="col-xs-12">
+			<ul id="tabs" class="nav nav-tabs">
+		
+				<th:block th:each="item : ${tabinfo.items()}">
+					<li th:class="${item.activo() ? 'active' : ''}">
+						<a href="#" th:href="@{{u}(u=${not item.activo() ? item.url() : ''})}" th:text="${item.texto()}">url</a>
+					</li>
+				</th:block>
+			</ul>
+		
+			<div class="panel-body">
+				<div class="tab-content">
+					<th:block th:include="_componentes :: lista-componentes(${tabinfo.componentes()},true)"></th:block>
+				</div>
+			</div>
+		</div>
+			
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Panel informativo                                                . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="panelinfo(panelData)">
+		<div class="col-xs-12">
+			<div th:class="${panelData.clasesParaHtml()}">
+				<p th:text="${panelData.texto()}">Texto</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Panel                                                            . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="panel(panelData)">
+		<div class="col-xs-12">
+			<div th:class="${panelData.clasesParaHtml()}">
+				<div class="panel-heading" th:unless="${panelData.sinCabecera()}">
+					<th:block th:unless="${panelData.esContraible()}">
+						<div class="panel-title">
+						<th:block th:include="_componentes :: lista-componentes(${panelData.cabecera()},false)"></th:block>
+						</div>
+					</th:block>
+
+					<th:block th:if="${panelData.esContraible()}">
+						<div class="panel-title">
+							<th:block th:include="_componentes :: lista-componentes(${panelData.cabecera()},false)"></th:block>
+							<span class="pull-right clickable" th:classappend="${panelData.contraido() ? 'panel-collapsed' : ''}">
+								<i class="glyphicon" th:classappend="${panelData.contraido() ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up'}"></i>
+							</span>
+						</div>
+					</th:block>
+				</div>
+				<div class="panel-body" th:style="${panelData.contraido() ? 'display: none;' : ''}">
+					<th:block th:include="_componentes :: lista-componentes(${panelData.componentes()},true)"></th:block>
+				</div>
+				<div class="panel-footer" th:unless="${panelData.sinPie()}">
+					<th:block th:include="_componentes :: lista-componentes(${panelData.pie()},false)"></th:block>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Datos nombre-valor                                         . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="nombrevalor(dato)">
+		<div class="col-xs-12">
+			<p>
+				<strong><span th:text="${dato.nombre()}">Nombre</span>:</strong>&nbsp;&nbsp;
+				<th:block th:if="${dato.valor().soloTexto()}"> 
+					<span th:text="${dato.valor().texto()}">VALOR</span>
+				</th:block>
+				<th:block th:unless="${dato.valor().soloTexto()}">
+					<li><a href="#" th:href="@{{u}(u=${dato.valor().url()})}" th:text="${dato.valor().texto()}">ITEM</a></li>
+				</th:block>
+			</p>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Boton a partir de un enlace                                     . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="boton-enlace(datos)">
+		<a th:class="${datos.clasesParaHtml()}" th:href="@{{u}(u=${datos.url()})} + ${datos.parametros()}" th:text="${datos.texto()}">boton</a>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Botonera                                                         . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="botonera(datos)">
+		<div class="col-xs-12">
+			<div th:class="${datos.clasesParaHtml()}">
+				<th:block th:include="_componentes :: lista-componentes(${datos.componentes()},false)"></th:block>
+			</div>
+		</div>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Fragmento                                                        . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="fragmento(datos)">
+		<th:block th:with="plantilla=${datos.plantilla()}">
+			<th:block th:include="${plantilla} :: ${datos.fragmento()}"></th:block>
+		</th:block>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Contenido HTML                                                   . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="contenido-html(f)">
+		<div class="col-xs-12">
+			<div th:id="${f.id()}" th:class="${f.clasesParaHtml()}" th:utext="${f.html()}"></div>
+		</div>
+	</div>
+
+
+	<!-- ================================================================== -->
+	<!-- Tabla básica                                                     . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="tabla-basica(fragmento)">
+		<div class="col-xs-12">
+			<div class="table-responsive">
+				<table th:class="${fragmento.clasesParaHtml()}">
+					<thead>
+						<tr>
+							<th th:each="col:${fragmento.columnas()}" th:class="${#strings.concat('col-xs-',col.ancho())}">
+								<th:block th:with="componente=${col.cabecera()}">
+									<th:block th:with="grupo=${T(es.nimio.nimiogcs.web.FragmentosUtils).grupo(componente)}">
+										<th:block th:include="${grupo} :: ${T(es.nimio.nimiogcs.web.FragmentosUtils).fragmento(componente)}(${componente})"></th:block>
+									</th:block>								
+								</th:block>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="fila:${fragmento.filas()}">
+							<td th:each="componente:${fila}">
+								<th:block th:with="grupo=${T(es.nimio.nimiogcs.web.FragmentosUtils).grupo(componente)}">
+									<th:block th:include="${grupo} :: ${T(es.nimio.nimiogcs.web.FragmentosUtils).fragmento(componente)}(${componente})"></th:block>
+								</th:block>								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<meta charset="utf-8"></meta>
+</head>
+
+<body>
+
+	<!-- ================================================================== -->
+	<!-- Formulario                                                       . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="formulario(fragmento)">
+		<div class="col-xs-12">
+			<form 
+				class="form-horizontal"
+				role="form"
+	            th:method='${fragmento.metodo()}'
+				th:action="@{{u}(u=${fragmento.urlAceptacion()})}">
+					
+				<th:block th:object="${__${fragmento.idModelo()}__}">
+					
+					<div class="col-xs-12 alert alert-danger" th:if="${#fields.hasErrors('*')}">
+						<div class="row">
+							<div class="col-xs-offset-1 col-xs-11">
+								<p><strong>Incorrecci&oacute;n en los datos:</strong></p>
+								<ol>
+									<li th:each="error: ${#fields.errors('*')}" th:text="${error}">Error</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				
+					<th:block th:include="_componentes :: lista-componentes(${fragmento.componentes()},true)"></th:block>
+
+				</th:block>
+			</form>
+		</div>
+	</div>
+	
+	<!-- ================================================================== -->
+	<!-- Formulario                                                       . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="formulario-multimodelo(fragmento)">
+		<div class="col-xs-12">
+			<form 
+				class="form-horizontal"
+				role="form"
+	            th:method='${fragmento.metodo()}'
+				th:action="@{{u}(u=${fragmento.urlAceptacion()})}">
+					
+				<th:block th:include="_componentes :: lista-componentes(${fragmento.componentes()},false)"></th:block>
+
+			</form>
+		</div>
+	</div>
+
+
+	<!-- ================================================================== -->
+	<!-- Subformulario                                                    . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="subformulario(fragmento)">
+		<div class="col-xs-12">
+
+			<th:block th:object="${__${fragmento.idModelo()}__}">
+					
+				<div class="col-xs-12 alert alert-danger" th:if="${#fields.hasErrors('*')}">
+					<div class="row">
+						<div class="col-xs-offset-1 col-xs-11">
+							<p><strong>Incorrecci&oacute;n en los datos:</strong></p>
+							<ol>
+								<li th:each="error: ${#fields.errors('*')}" th:text="${error}">Error</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			
+				<th:block th:include="_componentes :: lista-componentes(${fragmento.componentes()},true)"></th:block>
+	
+			</th:block>
+		
+		</div>
+	</div>
+
+
+	<!-- ================================================================== -->
+	<!-- Elemento oculto de un formulario                                 . -->
+	<!-- ================================================================== -->
+	
+	<div th:fragment="oculto(fragmento)">
+		<input type="hidden" th:field="*{__${fragmento.field()}__}" />
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Grupo de formulario con un input de tipo texto                   . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="grupo-texto(fragmento)">
+		<th:block th:with="campo=${fragmento.field()}">
+			<div class="col-xs-12">
+				<div class="form-group" th:classappend="${#fields.hasErrors('__${campo}__') ? 'has-error' : ''}">
+					<label th:for="${campo}" class="col-sm-3 col-xs-4 control-label"><span th:text="${fragmento.etiqueta()}">Nombre</span></label> 
+					<div class="col-sm-8 col-xs-8"> 
+						<input th:id="${campo}" class="form-control" type="text" th:placeholder="${fragmento.placeholder()}" th:field="*{__${campo}__}"/>
+						<div class="help-block"> 
+							<p th:if="${fragmento.tieneDescripcion()}" th:text="${fragmento.descripcion()}">
+							Texto de explicación.
+							</p>
+							<ul th:if="${#fields.hasErrors('__${campo}__')}">
+								<li th:each="error:${#fields.errors('__${campo}__')}" th:text="${error}">Error</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Grupo de formulario con un input de tipo texto                   . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="grupo-secreto(fragmento)">
+		<th:block th:with="campo=${fragmento.field()}">
+			<div class="col-xs-12">
+				<div class="form-group" th:classappend="${#fields.hasErrors('__${campo}__') ? 'has-error' : ''}">
+					<label th:for="${campo}" class="col-sm-3 col-xs-4 control-label"><span th:text="${fragmento.etiqueta()}">Nombre</span></label> 
+					<div class="col-sm-8 col-xs-8"> 
+						<input th:id="${campo}" class="form-control" type="password" th:placeholder="${fragmento.placeholder()}" th:field="*{__${campo}__}"/>
+						<div class="help-block"> 
+							<p th:if="${fragmento.tieneDescripcion()}" th:text="${fragmento.descripcion()}">
+							Texto de explicación.
+							</p>
+							<ul th:if="${#fields.hasErrors('__${campo}__')}">
+								<li th:each="error:${#fields.errors('__${campo}__')}" th:text="${error}">Error</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+
+
+	<!-- ================================================================== -->
+	<!-- Grupo de formulario con un input de tipo área de texto           . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="grupo-area-texto(fragmento)">
+		<th:block th:with="campo=${fragmento.field()}">
+			<div class="col-xs-12">
+				<div class="form-group" th:classappend="${#fields.hasErrors('__${campo}__') ? 'has-error' : ''}">
+					<label th:for="${campo}" class="col-sm-3 col-xs-4 control-label"><span th:text="${fragmento.etiqueta()}">Nombre</span></label> 
+					<div class="col-sm-8 col-xs-8"> 
+						<textarea th:rows="${fragmento.lineas()}" th:id="${campo}" class="form-control" th:field="*{__${campo}__}">
+						</textarea>
+						<div class="help-block"> 
+							<p th:if="${fragmento.tieneDescripcion()}" th:text="${fragmento.descripcion()}">
+							Texto de explicación.
+							</p>
+							<ul th:if="${#fields.hasErrors('__${campo}__')}">
+								<li th:each="error:${#fields.errors('__${campo}__')}" th:text="${error}">Error</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Grupo de formulario con un input de tipo selección               . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="grupo-seleccion(fragmento)">
+		<th:block th:with="campo=${fragmento.field()}">
+			<div class="col-xs-12">
+				<div class="form-group" th:classappend="${#fields.hasErrors('__${campo}__') ? 'has-error' : ''}">
+					<label th:for="${campo}" class="col-sm-3 col-xs-4 control-label"><span th:text="${fragmento.etiqueta()}">Nombre</span></label> 
+					<div class="col-sm-8 col-xs-8 selectContainer"> 
+						
+						<select th:id="${campo}" class='form-control' th:field="*{__${campo}__}">
+							<option th:each="valor: ${fragmento.valores()}" th:value="${valor.nombre}" th:text='${valor.descripcion}'>Tomcat</option>
+						</select>
+					
+						<div class="help-block"> 
+							<p th:if="${fragmento.tieneDescripcion()}" th:text="${fragmento.descripcion()}">
+							Texto de explicación.
+							</p>
+							<ul th:if="${#fields.hasErrors('__${campo}__')}">
+								<li th:each="error:${#fields.errors('__${campo}__')}" th:text="${error}">Error</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Grupo de formulario con un checkbox                              . -->
+	<!-- ================================================================== -->
+	
+	<div th:fragment="grupo-check(fragmento)">
+		<th:block th:with="campo=${fragmento.field()}">
+			<div class="col-xs-12">
+				<div class="form-group" th:classappend="${#fields.hasErrors('__${campo}__') ? 'has-error' : ''}">
+					<label th:for="${campo}" class="col-sm-3 col-xs-4 control-label"><span th:text="${fragmento.etiqueta()}">Nombre</span></label>
+					<div class="col-sm-8 col-xs-8">  
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" th:field="*{__${campo}__}"/>
+								<span th:text="${fragmento.texto()}">Texto asociado al check</span>
+							</label>
+						</div>
+						
+						<div class="help-block"> 
+							<p th:if="${fragmento.tieneDescripcion()}" th:text="${fragmento.descripcion()}">
+							Texto de explicación.
+							</p>
+							<ul th:if="${#fields.hasErrors('__${campo}__')}">
+								<li th:each="error:${#fields.errors('__${campo}__')}" th:text="${error}">Error</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Grupo de formulario con texto estático                           . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="grupo-texto-estatico(fragmento)">
+		<th:block th:with="campo=${fragmento.field()}">
+			<div class="col-xs-12">
+				<input type="hidden" th:field="*{__${campo}__}" />
+				<div class="form-group">
+					<label th:for="${campo}" class="col-sm-3 col-xs-4 control-label"><span th:text="${fragmento.etiqueta()}">Nombre</span></label> 
+					<div class="col-sm-8 col-xs-8"> 
+						<p th:id="${campo}" class="form-control-static" th:text="*{__${campo}__}">Texto fijo</p>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+
+	<!-- ================================================================== -->
+	<!-- Botón de tipo input                                              . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="boton-input(fragmento)">
+		<button type="submit" th:class="${fragmento.clasesParaHtml()}" th:text="${fragmento.texto()}">Aceptar</button>
+	</div>
+	
+	<!-- ================================================================== -->
+	<!-- Formulario en línea para introducir un valor                     . -->
+	<!-- ================================================================== -->
+
+	<div th:fragment="inline_texto(fragmento)">
+		<form method="GET" th:action="@{{u}(u=${fragmento.urlEnvio()})}">
+			<div class="col-xs-7">
+				<th:block th:if="${fragmento.tieneEtiqueta()}">
+					<label th:text="${fragmento.etiqueta()}"></label>
+				</th:block>
+				<input type="text" size="6" th:id="${fragmento.idEntrada()}" th:name="${fragmento.idEntrada()}" th:value="${fragmento.textoEntrada()}" />
+			</div>
+			<div class="col-xs-3">
+				<button type="submit" th:text="${fragmento.boton()}">Go!</button>
+			</div>
+		</form>
+	</div>
+	
+
+</body>
+
+</html>

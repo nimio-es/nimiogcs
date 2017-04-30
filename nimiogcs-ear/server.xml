@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Default server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>webProfile-6.0</feature>
+    </featureManager>
+
+    <!-- 
+        To allow access to this server from a remote client host="*" 
+        has been added to the following element -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+		              httpPort="9080"
+                  httpsPort="9443" />
+                  
+    <library id="oracle-lib">
+        <fileset dir="/config/lib" includes="ojdbc6-11.2.0.3.jar"/>
+    </library>
+
+    <dataSource jndiName="jdbc/NIMIO_GCS">
+        <jdbcDriver libraryRef="oracle-lib"/>
+        <properties.oracle 
+            user="system" 
+            password="oracle"
+            url="jdbc:oracle:thin:@//db:1521/xe"/>
+    </dataSource>
+
+    <application name="nimiogcs" context-root="/" location="/config/app/nimiogcs.war" type="war">
+        <classloader commonLibraryRef="oracle-lib"/>
+    </application>
+
+</server>
