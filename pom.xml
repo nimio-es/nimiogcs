@@ -46,4 +46,11 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>Atlassian 3rd-party repository</id>
+            <url>https://maven.atlassian.com/3rdparty/</url>
+        </repository>
+    </repositories>
+
 </project>
