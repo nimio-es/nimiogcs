@@ -5,7 +5,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY server.xml /config/
-COPY target/nimiogcs-ear/lib/ojdbc6-11.2.0.3.jar /config/lib/
+COPY target/nimiogcs-ear/lib/ojdbc6-12.1.0.1-atlassian-hosted.jar /config/lib/
 COPY target/nimiogcs-ear/nimiogcs-web.war /config/app/nimiogcs.war
 
 COPY wait-for-db.sh /opt/wait-for-db/
