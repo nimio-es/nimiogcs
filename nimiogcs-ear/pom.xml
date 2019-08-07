@@ -32,15 +32,6 @@
 
 	<dependencies>
 
-	  <!-- oracle driver -->
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>12.1.0.1-atlassian-hosted</version>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- dependencias -->
 		<dependency>
 			<groupId>es.nimio.nimiogcs</groupId>
@@ -71,12 +62,6 @@
 							<bundleFileName>nimiogcs-web.war</bundleFileName>
 							<contextRoot>/</contextRoot>
 						</webModule>
-
-						<jarModule>
-							<groupId>com.oracle</groupId>
-							<artifactId>ojdbc6</artifactId>
-							<includeInApplicationXml>true</includeInApplicationXml>
-						</jarModule>
 					</modules>
 				</configuration>
 			</plugin>
