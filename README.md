@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/saulo-alvarado/nimiogcs.svg?branch=master)](https://travis-ci.org/saulo-alvarado/nimiogcs)
 [![SourceLevel](https://app.sourcelevel.io/github/saulo-alvarado/nimiogcs.svg)](https://app.sourcelevel.io/github/saulo-alvarado/nimiogcs)
 
 # ¿Qué es NIMIO GCS?
