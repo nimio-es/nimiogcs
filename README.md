@@ -1,3 +1,5 @@
+[![SourceLevel](https://app.sourcelevel.io/github/saulo-alvarado/nimiogcs.svg)](https://app.sourcelevel.io/github/saulo-alvarado/nimiogcs)
+
 # ¿Qué es NIMIO GCS?
 
 Es un prototipo totalmente funcional de una aplicación para la Gestión de la Configuración del Software desarrollada a principios de 2016 para Bankinter Global Services y que finalmente no llegó a ponerse en producción. El objeto era poner orden y facilitar la construcción/evolución de Software en un entorno de desarrollo con las siguientes particularidades:
